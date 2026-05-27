@@ -14,6 +14,8 @@ import userRoutes from "./routers/userRouters.js";
 
 //importamos archivo de rutas para el restaurante
 import restauranteRoutes from "./routers/restauranteRoutes.js";
+//importamos la ruta para ordenes
+import orderRoutes from "./routers/orderRoutes.js";
 //Nos nocectamos a la BD
 mongoose
   .connect(process.env.DB_CONNECTION_STRING as string)
@@ -36,9 +38,11 @@ cloudinary.config({
 });
 
 const app = express();
-app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
+
+app.use("/api/order/checkout/webhook", express.raw({ type: "*/*" }));
+app.use(express.json());
 
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "!Servidor OK!" });
@@ -50,6 +54,7 @@ app.get("/", async (req: Request, res: Response) => {
 });
 app.use("/api/user", userRoutes);
 app.use("/api/restaurante", restauranteRoutes);
+app.use("/api/order", orderRoutes);
 const port = process.env.port || 3000;
 app.listen(port, () => {
   console.log("App corriendo en el puerto: " + port);

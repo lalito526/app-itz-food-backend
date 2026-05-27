@@ -5,6 +5,7 @@ import {
   getRestaurante,
   searchRestaurante,
   updateRestaurante,
+  getRestauranteById
 } from "../controllers/restauranteController.js";
 import { jwtCheck, jwtParse } from "../middleware/auth.js";
 import { validateRestauranteRequest } from "../middleware/validation.js";
@@ -49,4 +50,11 @@ router.get(
   searchRestaurante,
 );
 
+//ruta para obtener un restaurante por su id
+router.get("/:restauranteId",
+  param("restauranteId").isString()
+  .trim().notEmpty().withMessage("El parametro Id debe ser un Restaurante valido"),
+  getRestauranteById
+);
+//fin de restaurante por id
 export default router;

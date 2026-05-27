@@ -148,4 +148,26 @@ export const searchRestaurante = async (
     console.log(error);
     res.status(500).json({ message: "Error al buscar el restaurante" });
   }
+  
 };
+//funcion par obtener los datos del restaurante 
+  export const getRestauranteById = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const { restauranteId } = req.params;
+    const restaurante = await Restaurante.findById(restauranteId);
+
+    if (!restaurante) {
+      return res.status(404).json({ 
+        message: 'Restaurante no encontrado' 
+      });
+    }
+
+    return res.status(200).json(restaurante);
+  } catch (error) {
+    console.error('Error en getRestauranteById:', error);
+    
+    return res.status(500).json({ 
+      message: 'Error al obtener los datos del restaurante' 
+    });
+  }
+ };
