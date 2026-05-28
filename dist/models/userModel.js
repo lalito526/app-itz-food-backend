@@ -21,5 +21,5 @@ const userSchema = new mongoose.Schema({
         type: String
     }
 });
-export default mongoose.model('users', userSchema);
+export default mongoose.model('User', userSchema);
 //# sourceMappingURL=userModel.js.map
