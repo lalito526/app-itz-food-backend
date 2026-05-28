@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  restaurantId: { type: String, required: true },
-  userId: { type: String, required: true },
+  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurante", required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   deliveryDetails: {
     email: { type: String, required: true },
     name: { type: String, required: true },

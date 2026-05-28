@@ -10,7 +10,7 @@ import { v2 as cloudinary } from "cloudinary";
 dotenv.config();
 
 //Importamos archivo de rutas para usuarios
-import userRoutes from "./routers/userRouters.js";
+import userRoutes from "./routers/useRoutes.js";
 
 //importamos archivo de rutas para el restaurante
 import restauranteRoutes from "./routers/restauranteRoutes.js";

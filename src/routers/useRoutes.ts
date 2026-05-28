@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { createUser, updateUser, getUser } from "../controllers/useConstroller.js";
+import {
+  createUser,
+  getUser,
+  updateUser,
+} from "../controllers/useConstroller.js";
 import { jwtCheck, jwtParse } from "../middleware/auth.js";
 import { validateUserRequest } from "../middleware/validation.js";
 
@@ -10,7 +14,6 @@ router.post("/", jwtCheck, createUser);
 //ruta para actualizar el usuario
 router.put("/", jwtCheck, jwtParse, validateUserRequest, updateUser);
 
-// Ruta para obtener un usuario
-router.get('/', jwtCheck, jwtParse, getUser);
-
+//ruta pra obtener un usuario
+router.get("/", jwtCheck, jwtParse, getUser);
 export default router;
